@@ -4,6 +4,11 @@
 
 This repository contains a machine learning solution for diabetes prediction using the [Kaggle Playground Series - Season 5, Episode 12](https://www.kaggle.com/competitions/playground-series-s5e12/) competition dataset. The project involves comprehensive data analysis, feature engineering, model training with ensemble methods, and hyperparameter optimization to achieve optimal predictive performance.
 
+> [!IMPORTANT]  
+> The hosted Streamlit app may fail to start on some hosting services because the generated Random Forest model file (`models/rf_model.pkl`) is large (~300 MB) and was previously tracked with Git LFS. Some hosting providers do not support Git LFS or restrict large binary files, causing deployment failures.
+> 
+> This does not affect when you locally build and run the app.
+
 ## Overview
 
 The goal of this project is to build an accurate diabetes prediction model by:
