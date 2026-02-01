@@ -1,5 +1,7 @@
 # Diabetes Prediction
 
+![Diabetes Rist Predictor Front Page](assets/cover.png)
+
 This repository contains a machine learning solution for diabetes prediction using the [Kaggle Playground Series - Season 5, Episode 12](https://www.kaggle.com/competitions/playground-series-s5e12/) competition dataset. The project involves comprehensive data analysis, feature engineering, model training with ensemble methods, and hyperparameter optimization to achieve optimal predictive performance.
 
 ## Overview
