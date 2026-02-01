@@ -1,0 +1,4 @@
+/data/*.csv
+/out/*.csv
+notebooks/catboost_info/
+models/rf_model.pkl
