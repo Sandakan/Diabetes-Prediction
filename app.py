@@ -67,13 +67,12 @@ def load_models():
         lgbm_model = joblib.load(MODELS_DIR / "lgbm_model.pkl")
         catboost_model = joblib.load(MODELS_DIR / "catboost_model.pkl")
 
-        # Try to load Random Forest (optional - large file)
         rf_model = None
         if (MODELS_DIR / "rf_model.pkl").exists():
             try:
                 rf_model = joblib.load(MODELS_DIR / "rf_model.pkl")
             except Exception:
-                pass  # Skip RF if loading fails
+                pass
 
         scaler = joblib.load(MODELS_DIR / "scaler.pkl")
         ensemble_data = joblib.load(MODELS_DIR / "ensemble_weights.pkl")
@@ -81,15 +80,13 @@ def load_models():
         ordinal_mappings = joblib.load(MODELS_DIR / "ordinal_mappings.pkl")
         nominal_features = joblib.load(MODELS_DIR / "nominal_features.pkl")
 
-        # Build models list and adjust weights if RF is missing
         models = [xgb_model, lgbm_model, catboost_model]
-        weights = ensemble_data["weights"][:3]  # First 3 weights
+        weights = ensemble_data["weights"][:3]
 
         if rf_model is not None:
             models.append(rf_model)
-            weights = ensemble_data["weights"]  # All 4 weights
+            weights = ensemble_data["weights"]
         else:
-            # Normalize weights to sum to 1 when RF is excluded
             weights = np.array(weights)
             weights = weights / weights.sum()
 
@@ -214,7 +211,6 @@ def calculate_ensemble_prediction(X, models, weights):
         pred_proba = model.predict_proba(X)[:, 1]
         predictions.append(pred_proba)
 
-    # Weighted average of available models
     ensemble_pred = sum(w * p for w, p in zip(weights, predictions))
     return ensemble_pred[0]
 
